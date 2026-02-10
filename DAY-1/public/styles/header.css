@@ -1,0 +1,129 @@
+:root{
+  --ccs-border: rgba(0,0,0,.10);
+  --ccs-shadow: 0 18px 40px rgba(0,0,0,.08);
+}
+
+body{
+  margin:0;
+  height:100vh; /* just to show stickiness */
+  background:#fff;
+  font-family: ui-sans-serif, Roboto, Arial;
+  color:#0b1020;
+  padding:24px;
+}
+
+/* Sticky header container */
+.ccs-hnav{
+  position:sticky;
+  top:16px;
+  z-index:10;
+
+  display:flex;
+  align-items:center;
+  gap:10px;
+
+  margin: auto;
+
+  padding:10px;
+  border-radius:18px;
+  border:1px solid var(--ccs-border);
+  background:#fff;
+  box-shadow: var(--ccs-shadow);
+}
+
+.ccs-hbrand{
+  font-weight:1000;
+  letter-spacing:.2px;
+  padding:10px 10px;
+  border-radius:14px;
+  background: rgba(0,0,0,.03);
+  border:1px solid rgba(0,0,0,.06);
+}
+
+/* Pills container (this is what collapses horizontally) */
+.ccs-hpill{
+  display:flex;
+  gap:8px;
+  align-items:center;
+
+  padding:6px;
+  border-radius:16px;
+  border:1px solid rgba(0,0,0,.08);
+  background:#fff;
+
+  /* horizontal collapse trick */
+  max-width: 520px;
+  overflow:hidden;
+  white-space:nowrap;
+  transition: max-width .22s ease, padding .22s ease, border-color .22s ease;
+}
+
+/* Collapsed state: shrink to almost nothing (still smooth) */
+.ccs-hnav.is-collapsed .ccs-hpill{
+  max-width: 0px;
+  padding: 6px 0px;
+  border-color: transparent;
+}
+
+/* Pill items */
+.ccs-hitem{
+  text-decoration:none;
+  color: rgba(11,16,32,.74);
+  font-weight:900;
+  padding:10px 14px;
+  border-radius:14px;
+  transition: background .18s ease, transform .18s ease;
+}
+
+.ccs-hitem:hover{
+  background: rgba(0,0,0,.04);
+  transform: translateY(-1px);
+}
+
+.ccs-hitem.is-active{
+  color:#0b1020;
+  background: rgba(0,0,0,.06);
+}
+
+/* Hamburger */
+.ccs-hburger{
+  margin-left:auto;
+  width:40px;
+  height:40px;
+  border-radius:12px;
+  border:1px solid var(--ccs-border);
+  background:#fff;
+  cursor:pointer;
+  display:grid;
+  place-items:center;
+  gap:4px;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.ccs-hburger span{
+  display:block;
+  width:18px;
+  height:2px;
+  background:#111827;
+  border-radius:99px;
+  transition: transform .18s ease, opacity .18s ease;
+}
+
+/* Optional burger -> X animation */
+.ccs-hnav.is-collapsed .ccs-hburger span:nth-child(1){
+  transform: translateY(6px) rotate(45deg);
+}
+.ccs-hnav.is-collapsed .ccs-hburger span:nth-child(3){
+  transform: translateY(-6px) rotate(-45deg);
+}
+
+/* Responsive: auto-collapse on small screens */
+@media (max-width: 640px){
+  .ccs-hpill{ max-width: 0px; padding: 6px 0px; border-color: transparent; }
+  .ccs-hnav:not(.is-openSmall) .ccs-hpill{ max-width: 0px; }
+  .ccs-hnav.is-openSmall .ccs-hpill{
+    max-width: 520px;
+    padding:6px;
+    border-color: rgba(0,0,0,.08);
+  }
+}

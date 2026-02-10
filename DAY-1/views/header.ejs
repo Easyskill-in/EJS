@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./styles/header.css">
+</head>
+<body>
+    <header class="ccs-hnav">
+  <div class="ccs-hbrand">🪶</div>
+
+  <nav class="ccs-hpill" aria-label="Primary">
+    <a class="ccs-hitem is-active" href="/">Home</a>
+    <a class="ccs-hitem" href="#">Work</a>
+    <a class="ccs-hitem" href="/about">About</a>
+    <a class="ccs-hitem" href="#">Contact</a>
+  </nav>
+
+  <button class="ccs-hburger" type="button" aria-label="Toggle menu" aria-expanded="true">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+<script>
+    const header = document.querySelector(".ccs-hnav");
+const burger = document.querySelector(".ccs-hburger");
+
+// Desktop toggle uses is-collapsed
+burger.addEventListener("click", () => {
+  const isSmall = window.matchMedia("(max-width: 640px)").matches;
+
+  if (isSmall) {
+    // On small screens use is-openSmall for clarity
+    header.classList.toggle("is-openSmall");
+    const open = header.classList.contains("is-openSmall");
+    burger.setAttribute("aria-expanded", String(open));
+  } else {
+    header.classList.toggle("is-collapsed");
+    const collapsed = header.classList.contains("is-collapsed");
+    burger.setAttribute("aria-expanded", String(!collapsed));
+  }
+});
+
+// Set initial aria-expanded
+burger.setAttribute("aria-expanded", "true");
+
+</script>
+</body>
+
+</html>
