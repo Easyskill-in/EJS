@@ -3,9 +3,13 @@
 
 <h1>All Task</h1>
 <hr>
-<ul class="d-flex justify-content-center align-items-center flex-column bg-info " style="min-width: 200px; gap: 20px;">
+<ul class="d-flex justify-content-center align-items-center flex-column bg-success " style="min-width: 200px; gap: 20px;">
     <% Task.forEach((value,index)=>{%>
-        <li key=<%= value.id %> style="border:2px solid black; width:100%;padding:20px"><%= value.task %> <a class="btn btn-danger" href="/delete/<%= value.id%>">Delete Task</a></li>
+        <li key=<%= value.id %> style="border:2px solid black; width:100%;padding:20px">
+            <%= value.task %> 
+            <a class="btn btn-danger" href="/delete/<%= value.id%>">Delete Task</a>
+            <a class="btn btn-info" href="/update/<%= value.id%>">Update Task</a>
+        </li>
         
     <%})%>
 </ul>
