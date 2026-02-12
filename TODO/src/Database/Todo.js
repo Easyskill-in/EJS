@@ -10,7 +10,7 @@ function writeData(data){
 
 function readData(){
     const data = fs.readFileSync(mypath,"utf-8")
-    console.log(data)
+    //console.log(data)
     return JSON.parse(data);
 }
 
@@ -23,15 +23,15 @@ function AddTask(data){
 
 function findTask(id){
     const AllTask = readData()
-    const data = AllTask.find((value)=>{
+    const mydata = AllTask.find((value)=>{
         return value.id===id
     })
-    if(!data){
-        console.log("No Data")
+    if(!mydata){
+        //console.log("No Data")
         return;
     }
-    console.log(data)
-   
+    //console.log("My Data : ",mydata)
+   return mydata
 }
 
 function DeleteTask(id){
@@ -46,7 +46,8 @@ function UpdateTask(id,data){
       const AllTask = readData();
       const newTask = AllTask.map((value)=>{
         if(value.id === id){
-            return {...data,id}
+            
+            return { task:data,id}
         }else{
             return value
         }
