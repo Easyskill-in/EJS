@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button><a href="/form">Add User</a></button>
+    <h1>Users</h1>
+    <hr>
+    <% if(users.length <=0){ %>
+        <h1>No User</h1>
+        <%}else{%>
+
+
+            <table border="1" cellpadding="8">
+                <tr>
+                    <th>USERNAME</th>
+                    <th>PASSWORD</th>
+                    <th>DELETE</th>
+                    <th>UPDATE</th>
+                </tr>
+                <%users.forEach((value,index)=>{%>
+                    <tr>
+                        <td>
+                            <%=value.username%>
+                        </td>
+                        <td>
+                            <%=value.password%>
+                        </td>
+                        <td>
+                            <form action="/delete/<%=value.id%>" method="post">
+                                <button type="submit">Delete</button>
+                            </form>
+                        </td>
+                        <td>
+                            <form action="/update/<%=value.id%>" method="get">
+                                <button type="submit">Update</button>
+                            </form>
+                        </td>
+                    </tr>
+                    <% })%>
+            </table>
+
+            <% }%>
+</body>
+
+</html>
